@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:insta_clone/responsive/responsive.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,9 +22,38 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       title: 'Insta Clone',
-      theme: AppTheme.lightTheme  ,
-      home: const SignUpScreen(),
+      theme: AppTheme.lightTheme,
+      home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.connectionState == ConnectionState.active) {
+            if (snapshot.hasData) {
+              return const ResponsiveLayout(
+                webScreenLayout: WebScreenLayout(),
+                mobileScreenLayout: MobileScreenLayout(),
+                tabletScreenLayout: TabletScreenLayout(),
+              );
+            } else if (snapshot.hasError) {
+              return const Scaffold(
+                body: Center(
+                  child: Text("Something went wrong"),
+                ),
+              );
+            }
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+
+          return const LoginScreen();
+        },
+      ),
       // themeMode: ThemeMode.system,
       // home: const ResponsiveLayout(
       //   webScreenLayout: WebScreenLayout(),
