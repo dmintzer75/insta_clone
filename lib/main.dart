@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:insta_clone/responsive/responsive.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:insta_clone/screens/login_screen.dart';
+import 'package:insta_clone/screens/signup_screen.dart';
+import 'package:insta_clone/utils/theme/app_theme.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -20,8 +22,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Insta Clone',
-      theme: ThemeData.light(),
-      home: const LoginScreen(),
+      theme: AppTheme.lightTheme  ,
+      home: const SignUpScreen(),
       // themeMode: ThemeMode.system,
       // home: const ResponsiveLayout(
       //   webScreenLayout: WebScreenLayout(),
