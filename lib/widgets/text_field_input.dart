@@ -21,6 +21,7 @@ class TextFieldInput extends StatelessWidget {
       ),
     );
     return TextField(
+      controller: textEditingController,
       style:  TextStyle(color: Theme.of(context).primaryColor),
       decoration: InputDecoration(
         hintText: hintText,
