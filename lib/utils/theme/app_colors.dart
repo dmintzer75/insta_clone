@@ -12,9 +12,10 @@ class LightThemeColors {
 }
 
 class DarkThemeColors {
-  static const mobileBackgroundColor = Color(0xFF333333);
-  static const webBackgroundColor = Color(0xFF333333);
+  static const mobileBackgroundColor = Colors.black;
+  static const webBackgroundColor = Colors.black54;
   static const mobileSearchColor = Color.fromRGBO(38, 38, 38, 1);
+  static const textInputColor = Color(0xFF333333);
   static const blueColor = Color.fromRGBO(0, 149, 246, 1);
   static const primaryColor = Colors.white;
   static const primaryTextColor = Colors.white;
