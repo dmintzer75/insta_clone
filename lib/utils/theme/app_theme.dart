@@ -4,8 +4,12 @@ import 'package:insta_clone/utils/theme/app_colors.dart';
 class AppTheme {
   static ThemeData lightTheme = ThemeData(
     primaryColor: LightThemeColors.primaryColor,
+    disabledColor: LightThemeColors.secondaryColor,
     highlightColor: LightThemeColors.blueColor,
     dividerColor: LightThemeColors.secondaryColor,
+    bottomAppBarTheme: const BottomAppBarTheme(
+      color: LightThemeColors.bottomAppBarColor,
+    ),
     colorScheme: const ColorScheme.light(
       primary: LightThemeColors.primaryColor,
       secondary: LightThemeColors.secondaryColor,
@@ -22,6 +26,11 @@ class AppTheme {
   static ThemeData darkTheme = ThemeData(
     primaryColor: DarkThemeColors.primaryColor,
     scaffoldBackgroundColor: DarkThemeColors.mobileBackgroundColor,
+    disabledColor: DarkThemeColors.secondaryColor,
+    bottomAppBarTheme: const BottomAppBarTheme(
+      color: DarkThemeColors.bottomAppBarColor,
+      padding: EdgeInsets.only(top: 10),
+    ),
     highlightColor: DarkThemeColors.blueColor,
     dividerColor: DarkThemeColors.secondaryColor,
     dialogBackgroundColor: DarkThemeColors.textInputColor,
