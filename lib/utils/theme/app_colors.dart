@@ -8,6 +8,7 @@ class LightThemeColors {
   static const primaryColor = Color(0xFF333333);
   static const primaryTextColor = Color(0xFF333333);
   static const secondaryColor = Colors.grey;
+  static const bottomAppBarColor = Color(0xffFAFAFA);
   static const bannerColor = Color(0xffED4956);
 }
 
@@ -20,5 +21,6 @@ class DarkThemeColors {
   static const primaryColor = Colors.white;
   static const primaryTextColor = Colors.white;
   static const secondaryColor = Colors.grey;
+   static const bottomAppBarColor = Colors.black54;
   static const bannerColor = Color(0xffED4956);
 }

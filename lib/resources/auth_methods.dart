@@ -2,11 +2,24 @@ import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:insta_clone/models/user.dart' as model;
 import 'package:insta_clone/resources/storage_methods.dart';
 
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  // Get user details
+  // get user details
+  Future<model.User> getUserDetails() async {
+    User currentUser = _auth.currentUser!;
+
+    DocumentSnapshot documentSnapshot =
+        await _firestore.collection('users').doc(currentUser.uid).get();
+
+    return model.User.fromSnap(documentSnapshot);
+  }
+
   // Sign up user with email and password
   Future<String> signUpWithEmailAndPassword({
     required String email,
@@ -31,15 +44,17 @@ class AuthMethods {
       String photoUrl = await StorageMethods().uploadImageToStorage("profile_images", file, false);
 
       // add user to database
-      await _firestore.collection("users").doc(credential.user!.uid).set({
-        "username": username,
-        "email": email,
-        "bio": bio,
-        "uid": credential.user!.uid,
-        "followers": [],
-        "following": [],
-        'photoUrl': photoUrl,
-      });
+      model.User user = model.User(
+        email: email,
+        username: username,
+        bio: bio,
+        uid: credential.user!.uid,
+        photoUrl: photoUrl,
+        followers: [],
+        following: [],
+      );
+      await _firestore.collection("users").doc(credential.user!.uid).set(user.toJson());
+
       res = 'success';
     } on FirebaseAuthException catch (err) {
       if (err.code == 'invalid-email') {
@@ -79,7 +94,7 @@ class AuthMethods {
         res = 'User not found';
       } else if (err.code == 'wrong-password') {
         res = 'Wrong password';
-      } 
+      }
     }
     return res;
   }
