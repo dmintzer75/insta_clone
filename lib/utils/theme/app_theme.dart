@@ -17,10 +17,12 @@ class AppTheme {
     ),
     scaffoldBackgroundColor: LightThemeColors.mobileBackgroundColor,
     textTheme: const TextTheme(
-      displayLarge: TextStyle(
-        color: LightThemeColors.primaryTextColor,
-      ),
-    ),
+        displayLarge: TextStyle(
+          color: LightThemeColors.primaryTextColor,
+        ),
+        titleLarge: TextStyle(
+          fontWeight: FontWeight.bold,
+        )),
   );
 
   static ThemeData darkTheme = ThemeData(

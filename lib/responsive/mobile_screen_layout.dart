@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:insta_clone/constants/constant_items.dart';
 
 class MobileScreenLayout extends StatefulWidget {
   const MobileScreenLayout({super.key});
@@ -25,11 +26,8 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   }
 
   void navigationTapped(int pageIndex) {
-    
-    _pageController.animateToPage(
+    _pageController.jumpToPage(
       pageIndex,
-      duration: const Duration(milliseconds: 200),
-      curve: Curves.easeInOut,
     );
   }
 
@@ -37,9 +35,6 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   Widget build(BuildContext context) {
     final customTheme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Mobile Screen'),
-      ),
       body: PageView(
         physics: const NeverScrollableScrollPhysics(),
         controller: _pageController,
@@ -48,23 +43,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
             _page = index;
           });
         },
-        children: const [
-          Center(
-            child: Text('Home'),
-          ),
-          Center(
-            child: Text('Search'),
-          ),
-          Center(
-            child: Text('Add'),
-          ),
-          Center(
-            child: Text('Favorite'),
-          ),
-          Center(
-            child: Text('Profile'),
-          ),
-        ],
+        children: homeScreenItems,
       ),
       bottomNavigationBar: CupertinoTabBar(
         currentIndex: _page,
